@@ -1,5 +1,5 @@
-﻿export default async function handler(req, res) {
-  const { message } = req.body;
+﻿export async function POST(request) {
+  const { message } = await request.json();
   
   const response = await fetch(
     https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=,
@@ -13,5 +13,5 @@
   );
   
   const data = await response.json();
-  res.json({ response: data.candidates[0].content.parts[0].text });
+  return Response.json({ response: data.candidates[0].content.parts[0].text });
 }
